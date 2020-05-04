@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Récépissé" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="734e60df-ed96-4d4e-b1d6-1b5de33915e0">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="186"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM T_Etudiant
+INNER JOIN T_Promotion ON T_Etudiant.nom_promotion = T_Promotion.nom_promotion
+INNER JOIN T_Departement ON T_Promotion.nom_departement = T_Departement.nom_departement
+INNER JOIN T_Faculte ON T_Departement.nom_faculte = T_Faculte.nom_faculte
+ GROUP BY matricule_etu, nom_etu, postnom_etu, prenom_etu, sexe_etu, situation, T_Etudiant.nom_promotion, annee_academique, T_Promotion.nom_promotion,
+ T_Promotion.nom_departement, T_Departement.nom_departement, T_Departement.nom_faculte, T_Faculte.nom_faculte, T_Etudiant.id_app, T_Faculte.mot_de_passe
+ HAVING matricule_etu = (select IDENT_CURRENT('T_Etudiant'))]]>
+	</queryString>
+	<field name="matricule_etu" class="java.lang.Integer"/>
+	<field name="nom_etu" class="java.lang.String"/>
+	<field name="postnom_etu" class="java.lang.String"/>
+	<field name="prenom_etu" class="java.lang.String"/>
+	<field name="sexe_etu" class="java.lang.String"/>
+	<field name="nom_promotion" class="java.lang.String"/>
+	<field name="annee_academique" class="java.lang.String"/>
+	<field name="situation" class="java.lang.String"/>
+	<field name="nom_departement" class="java.lang.String"/>
+	<field name="nom_faculte" class="java.lang.String"/>
+	<group name="nom_promotion">
+		<groupExpression><![CDATA[$F{nom_promotion}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="128" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="227" height="20" forecolor="#0066FF" uuid="0eb943d0-e550-46f1-a432-47868c5f6b61"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[République Démocratique du Congo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="24" width="189" height="20" forecolor="#0066FF" uuid="04c70ff2-e67f-4170-b62e-498b019ba5b2"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSITE DE KINSHASA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="64" y="46" width="116" height="77" uuid="f03a1d71-2dfe-4f75-9ed2-689c35ccfdce"/>
+				<imageExpression><![CDATA["E:\\Mes Photos\\Photos Divers\\Logo\\Llogo_UNIKN 1.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="22" y="0" width="88" height="20" forecolor="#0066FF" uuid="721113aa-a4bd-410c-9d99-4380fcf4c27e"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[FACULTE DES ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="109" y="0" width="100" height="20" forecolor="#0066FF" uuid="9259ec81-fcb4-4d77-a19b-e880cab96d93"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom_faculte}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="82" y="0" width="45" height="16" forecolor="#0066FF" uuid="190d009e-a94d-4887-859d-ac71cf2107bb"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[B.P. 190]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="76" y="16" width="63" height="20" forecolor="#0066FF" uuid="15a94721-a320-4c24-9fd9-6dfdef4ac448"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[KINSHASA XI]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="480" splitType="Stretch">
+			<staticText>
+				<reportElement x="160" y="22" width="252" height="25" uuid="299b6018-5442-4d17-8d29-63b22118e2e5"/>
+				<textElement>
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECEPISSE D'INSCRIPTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="76" y="88" width="174" height="20" uuid="390834c0-7ad7-4adc-b497-fa65a81288a2"/>
+				<textElement>
+					<font fontName="Segoe UI" size="12"/>
+				</textElement>
+				<text><![CDATA[Vos informations enregistrées :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="121" width="120" height="20" uuid="182ac084-0339-464d-b1b5-460234a0e71a"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<text><![CDATA[● Nom 	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="152" width="120" height="20" uuid="10d03602-8397-4c73-9770-9fe9b1f77ae5"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<text><![CDATA[● Postnom 	:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="310" y="121" width="120" height="20" uuid="f4f9e631-3607-409e-8f2d-8b4af95b0815"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom_etu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="152" width="120" height="20" uuid="885c20f5-5294-4371-a237-80aa2ce67ab0"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{postnom_etu}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="110" y="183" width="120" height="20" uuid="4ac92987-2d4e-4929-8418-d7fea864c1f5"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<text><![CDATA[● Prenom 	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="214" width="120" height="20" uuid="8f1939a0-925e-48b7-a5dc-cec8e92f25c6"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<text><![CDATA[● Sexe 	:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="310" y="183" width="120" height="20" uuid="2c2ac0a8-1af5-4b61-8b4e-a82a6d519cb2"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{prenom_etu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="214" width="120" height="20" uuid="b21b0f7c-bac8-4d75-9efc-9c9df1e9254c"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexe_etu}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="110" y="245" width="136" height="20" uuid="e8cca4cd-7d9c-450d-acf7-10190da37d36"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<text><![CDATA[● Promotion 	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="338" width="168" height="20" uuid="63668a2f-e718-4725-abf9-0508af390b0a"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<text><![CDATA[● Année academique	:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="310" y="245" width="133" height="20" uuid="327685ce-8456-484a-8303-90fe3d7bd9b4"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom_promotion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="338" width="144" height="20" uuid="34883977-f36c-43eb-841e-35e70499c05a"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{annee_academique}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="110" y="276" width="136" height="20" uuid="759fb47f-0570-4fd0-ab22-aa10da926e7e"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<text><![CDATA[● Departement 	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="307" width="136" height="20" uuid="f38dcadb-aa80-4054-8cee-524f3f4c2d8a"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<text><![CDATA[● Faculté 	:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="310" y="276" width="156" height="20" uuid="bebacdd9-42aa-40cd-a42e-c0ca1d8a21cc"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom_departement}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="307" width="100" height="20" uuid="6eb61596-f69e-4074-a2d4-2823c6c2d7c5"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom_faculte}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="410" width="229" height="20" uuid="7fa98aea-00e5-4daa-9a9f-b3225cfd1792"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<text><![CDATA[Merci d'avoir choisir notre Faculté]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="444" width="532" height="20" uuid="83425f8f-4c21-4bb4-9572-fb9c149f8651"/>
+				<textElement>
+					<font fontName="Segoe UI" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Attention : Votre inscription se confirmera lors du paiement de frais academique]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="5" width="555" height="1" uuid="910926d0-1067-4ff6-b4e7-ca6cc16b15b5"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="7" width="127" height="20" forecolor="#0066FF" uuid="ba18829d-0097-49c2-877d-2ff95da184fb"/>
+				<textElement>
+					<font fontName="Segoe UI" size="12"/>
+				</textElement>
+				<text><![CDATA[Site : www.unikin.ac.cd]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="403" y="7" width="143" height="20" forecolor="#0066FF" uuid="baba393c-fe59-4f9d-a789-7f25938686eb"/>
+				<textElement>
+					<font fontName="Segoe UI" size="12"/>
+				</textElement>
+				<text><![CDATA[Tél : +243 89 52 38 373]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="22" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="releve" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c43af311-fb31-40ba-a758-e13daad16163">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="306"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM T_Etudiant INNER JOIN T_Notes ON T_Etudiant.matricule_etu = T_Notes.matricule_etu
+INNER JOIN T_Historique ON T_Etudiant.matricule_etu = T_Historique.matricule_etu AND T_Notes.id_notes = T_Historique.id_notes
+WHERE T_Historique.annee_academique_his = '2014 - 2015']]>
+	</queryString>
+	<field name="matricule_etu" class="java.lang.Integer"/>
+	<field name="nom_etu" class="java.lang.String"/>
+	<field name="postnom_etu" class="java.lang.String"/>
+	<field name="prenom_etu" class="java.lang.String"/>
+	<field name="sexe_etu" class="java.lang.String"/>
+	<field name="decision" class="java.lang.String"/>
+	<field name="pourcentage" class="java.lang.Integer"/>
+	<field name="nbre_reussi" class="java.lang.Integer"/>
+	<field name="nbre_echec" class="java.lang.Integer"/>
+	<field name="session" class="java.lang.String"/>
+	<field name="promotion_his" class="java.lang.String"/>
+	<field name="annee_academique_his" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="227" height="20" forecolor="#0066FF" uuid="5e2e798b-c7e6-4ae2-8c98-a59f3a3899e6"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[République Démocratique du Congo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="20" width="189" height="20" forecolor="#0066FF" uuid="4ee84cca-649b-4c1f-a770-f1fc0a70982d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSITE DE KINSHASA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="57" y="40" width="116" height="77" uuid="0e87e265-a08a-49f5-b636-67ab22034267"/>
+				<imageExpression><![CDATA["E:\\Mes Photos\\Photos Divers\\Logo\\Llogo_UNIKN 1.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="19" y="0" width="154" height="20" forecolor="#0066FF" uuid="43f971fe-b06a-485c-9139-c51409910554"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[FACULTE DES SCIENCES]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement x="69" y="3" width="45" height="16" forecolor="#0066FF" uuid="14b71145-2e69-464a-96e2-b83e5c52965b"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[B.P. 190]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="19" width="63" height="20" forecolor="#0066FF" uuid="7c4c4048-9d24-4805-88b7-a38a181d7163"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[KINSHASA XI]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="175" splitType="Stretch">
+			<staticText>
+				<reportElement x="163" y="0" width="215" height="25" uuid="36f44bde-16d5-4c31-879f-330b25454250"/>
+				<textElement>
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELEVE DES COTES N°]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="378" y="0" width="26" height="25" uuid="55c2c89c-81e0-48f7-a86f-6ddedcfe29d3"/>
+				<textElement>
+					<font fontName="Arial" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{matricule_etu}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="404" y="0" width="0" height="25" uuid="0dc5ac5e-8224-4a9a-aabb-4599f9c4a8cd"/>
+				<textElement>
+					<font fontName="Arial" size="18"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="416" y="0" width="139" height="25" uuid="cd0fb262-1626-4eaa-8a60-6c144b6fd7d4"/>
+				<textElement>
+					<font fontName="Arial" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{annee_academique_his}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="57" y="63" width="83" height="20" uuid="326b62a9-7d14-4863-9828-429017e3e640"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nous soussignés,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="61" width="154" height="20" uuid="d0c4ed4f-e6ba-4fd3-8daf-23958f4f22d9"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Professeur PHUKU PHUATI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="63" width="107" height="20" uuid="f38e6299-b335-4ab6-8b4c-bf1a78b34310"/>
+				<text><![CDATA[, Doyen de la faculté et ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="401" y="61" width="164" height="20" uuid="139bdfa4-083c-48f0-a604-397db473c04d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Professeur MUSESA LANDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="83" width="567" height="20" uuid="c887be96-5d9f-47cf-a32c-869511405041"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Secretaire Academique de la Faculté de Sciences de l'Université de Kinshasa, declarons par la presente que le (la) nommé(e)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="10" y="102" width="65" height="20" uuid="ef65feb1-55f5-4d17-aad9-7237c9105a77"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom_etu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="103" width="77" height="19" uuid="b1515fd2-8d57-4363-a603-d79b57f379e4"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{postnom_etu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="152" y="103" width="64" height="19" uuid="648199cd-960e-4b17-8a6f-d9de37246591"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{prenom_etu}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="216" y="103" width="188" height="20" uuid="a1e17992-7ee0-4576-acf8-9c8e09df46ea"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[a suivi les cours prévus au programme de ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="404" y="102" width="139" height="20" uuid="7ce23672-9cf2-41d0-90ec-af674f957b9c"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{promotion_his}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
